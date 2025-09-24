@@ -17,7 +17,7 @@ servicesLink.addEventListener("click", (e) => {
     }
 });
 
-// Optional: Close mobile dropdown when clicking outside
+// Close mobile dropdown when clicking outside
 document.addEventListener("click", (e) => {
     if (window.innerWidth <= 600) {
         const isClickInside = servicesLink.contains(e.target) || dropdownContent.contains(e.target);
@@ -27,11 +27,21 @@ document.addEventListener("click", (e) => {
     }
 });
 
-// Optional: Close mobile nav menu when clicking a link
+// Close mobile nav menu when clicking a link
 document.querySelectorAll(".nav-menu li a").forEach(link => {
     link.addEventListener("click", () => {
         if (window.innerWidth <= 600) {
             navMenu.classList.remove("active");
         }
+    });
+});
+
+// ===== Show Service Cards on page load =====
+window.addEventListener("DOMContentLoaded", () => {
+    const serviceCards = document.querySelectorAll(".service-card");
+    serviceCards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add("show");
+        }, index * 150); // staggered fade-in effect
     });
 });
