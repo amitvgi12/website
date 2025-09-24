@@ -19,8 +19,8 @@
         <ul class="nav-menu" id="nav-menu">
             <li><a href="index.html">Home</a></li>
 
-            <li class="dropdown">
-                <a href="#">Services ▼</a>
+            <li class="dropdown" id="services-dropdown">
+                <a href="#" id="services-link">Services ▼</a>
                 <ul class="dropdown-content">
                     <li><a href="services/surveillance.html">Surveillance & Monitoring</a></li>
                     <li><a href="services/manned-guarding.html">Manned Guarding</a></li>
@@ -74,12 +74,23 @@
 
 <script src="js/script.js"></script>
 <script>
-    // Hamburger menu toggle
+    // Hamburger toggle
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("nav-menu");
 
     hamburger.addEventListener("click", () => {
         navMenu.classList.toggle("active");
+    });
+
+    // Mobile dropdown toggle for Services
+    const servicesLink = document.getElementById("services-link");
+    const dropdownContent = document.querySelector("#services-dropdown .dropdown-content");
+
+    servicesLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (window.innerWidth <= 600) {
+            dropdownContent.classList.toggle("active");
+        }
     });
 </script>
 </body>
