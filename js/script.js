@@ -37,3 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ===== Show Service Cards
+    window.addEventListener("DOMContentLoaded", () => {
+        const serviceCards = document.querySelectorAll(".service-card");
+        serviceCards.forEach((card, index) => {
+            setTimeout(() => {
+                card.classList.add("show");
+            }, index * 150); // staggered fade-in effect
+        });
+    });
