@@ -12,22 +12,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const servicesLink = document.getElementById("services-link");
 
     servicesLink.addEventListener("click", (e) => {
-        e.preventDefault(); // Prevent default link behavior
+        // Only override click behavior on mobile
         if (window.innerWidth <= 600) {
+            e.preventDefault(); // prevent page reload
             servicesDropdown.classList.toggle("active");
         }
     });
 
-    // Close mobile dropdown if clicking outside
+    // Close dropdown if clicking outside (mobile only)
     document.addEventListener("click", (e) => {
         if (window.innerWidth <= 600) {
-            if (!servicesDropdown.contains(e.target)) {
+            if (
+                !servicesDropdown.contains(e.target) &&
+                !servicesLink.contains(e.target)
+            ) {
                 servicesDropdown.classList.remove("active");
             }
         }
     });
 
-    // Close mobile nav menu when a link is clicked
+    // Close nav menu after clicking a link (mobile only)
     document.querySelectorAll(".nav-menu li a").forEach(link => {
         link.addEventListener("click", () => {
             if (window.innerWidth <= 600) {
@@ -36,12 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // ===== Show Service Cards
-    window.addEventListener("DOMContentLoaded", () => {
-        const serviceCards = document.querySelectorAll(".service-card");
-        serviceCards.forEach((card, index) => {
-            setTimeout(() => {
-                card.classList.add("show");
-            }, index * 150); // staggered fade-in effect
-        });
+    // ===== Animate Service Cards =====
+    const serviceCards = document.querySelectorAll(".service-card");
+    serviceCards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add("show");
+        }, index * 150);
     });
+});
